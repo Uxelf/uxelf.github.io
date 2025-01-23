@@ -50,7 +50,7 @@ async function updateAliasPlaceholder(){
 		firstLoad = false;
 		return;
 	}
-	gameSocket.updateAlias(alias);
+	//gameSocket.updateAlias(alias);
 }
 
 async function checkAlias(){

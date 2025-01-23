@@ -2,7 +2,7 @@
 
 export default async(alias) => {
     
-    try{
+    /* try{
         const response = fetch('/user_info/change_alias',{
             method: 'PATCH',
             headers:{
@@ -19,5 +19,6 @@ export default async(alias) => {
     catch (error){
         console.error('Error:', error.message);
         return null;
-    }
+    } */
+    localStorage.setItem('jwtToken', alias);
 }

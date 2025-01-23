@@ -7,6 +7,16 @@ export async function sendCreateUserRequest() {
     const failInfo = document.getElementById('failInfoRegister');
     failInfo.value = '';
     
+    if (!username){
+        failInfo.textContent = "No Username introduced";
+        return;
+    }
+
+    if (!password){
+        failInfo.textContent = "No Password introduced";
+        return;
+    }
+
     if (password !== passwordRep) {
         failInfo.textContent = 'Passwords do not match.';
         return;
@@ -17,7 +27,7 @@ export async function sendCreateUserRequest() {
         return;
     }
 
-    try {
+    /* try {
         const response = await fetch('/auth_service/register/', {
             method: 'POST',
             headers: {
@@ -38,6 +48,9 @@ export async function sendCreateUserRequest() {
     } catch (error){
         failInfo.textContent = error.message;
         return false;
-    }
+    } */
+
+    localStorage.setItem('jwtToken', username);
+    window.location.href = '#home';
 }
 

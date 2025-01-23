@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { degToRad } from './gameTools.js';
 import * as ft from './gameTools.js';
 import * as gameSocket from '../js/gameSocket.js';
+import * as localGame from './local_game.js'
 
 
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -244,6 +245,7 @@ let container = null;
 let currentWidth = 0;
 let currentHeight = 0;
 export function startAnimation(){
+    localGame.startGame();
     container = document.querySelector('#canvas');
     container.append(renderer.domElement);
     currentHeight = container.offsetHeight;
@@ -279,6 +281,7 @@ export function stopAnimation(){
 function animate() {
     animationId = requestAnimationFrame( animate );
 
+    localGame.update();
     if (isGoalExplosionOn)
         processGoalExplosionParticles();
 
@@ -321,19 +324,19 @@ export function updateGameData(data){
         gameSocket.leaveGame();
     }
     const gameState = data.state;
-    moveBallCube(gameState.Ball[0] / 10, -gameState.Ball[1] / 10);
-    movePaddle1To(new THREE.Vector3(gameState.Left_Player[0] / 10, 0, -gameState.Left_Player[1] / 10));
-    movePaddle2To(new THREE.Vector3(gameState.Right_Player[0] / 10, 0, -gameState.Right_Player[1] / 10));
+    moveBallCube(gameState.Ball[0], -gameState.Ball[1]);
+    movePaddle1To(new THREE.Vector3(gameState.Left_Player[0], 0, -gameState.Left_Player[1]));
+    movePaddle2To(new THREE.Vector3(gameState.Right_Player[0], 0, -gameState.Right_Player[1]));
 
     if (gameState.Hit == "right scored")
     {
         startGoalExplosion("left");
-        startCountdown(0);
+        //startCountdown(0);
     }
     else if (gameState.Hit == "left scored")
     {
         startGoalExplosion("right");
-        startCountdown(0);
+        //startCountdown(0);
     }
 
     setGameTime(gameState.Time);
@@ -476,7 +479,7 @@ function readInputs(){
 
 function readOfflineInputs(){
 
-    if (upKeyHolded || downKeyHolded || wKeyHolded || sKeyHolded){
+    /* if (upKeyHolded || downKeyHolded || wKeyHolded || sKeyHolded){
         let user1Input = "";
         let user2Input = "";
 
@@ -498,6 +501,30 @@ function readOfflineInputs(){
             json[1] = user2Input;
 
         gameSocket.send(JSON.stringify(json));
+    } */
+
+    if (upKeyHolded || downKeyHolded || wKeyHolded || sKeyHolded){
+        let user1Input = "";
+        let user2Input = "";
+
+        if (wKeyHolded)
+            user1Input = "UP";
+        else if (sKeyHolded)
+            user1Input = "DOWN";
+        if (upKeyHolded)
+            user2Input = "UP";
+        else if (downKeyHolded)
+            user2Input = "DOWN";
+        const json = {
+            "type": "update_input",
+            "mode": "offline"
+        }
+        if (user1Input != "")
+            json[0] = user1Input;
+        if (user2Input != "")
+            json[1] = user2Input;
+
+        localGame.movePaddles(user1Input, user2Input);
     }
 }
 

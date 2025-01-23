@@ -39,13 +39,7 @@ export async function sendLoginRequest() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestData)
-    }); */
-    const response = {
-        ok: true,
-        json: async () => ({
-            token: "jwtToken"
-        })
-    };
+    });
     if (!response.ok){
         const errorData = await response.json();
         const failDiv = document.getElementById('failInfo');
@@ -64,8 +58,19 @@ export async function sendLoginRequest() {
         localStorage.setItem('jwtToken', (await data).token);
         window.location.href = '#home';
         connectLoginSocket();
+    } */
+
+    if (!username){
+        failInfo.textContent = "No Username introduced";
+        return;
     }
-    return true;
+
+    if (!password){
+        failInfo.textContent = "No Password introduced";
+        return;
+    }
+    localStorage.setItem('jwtToken', username);
+    window.location.href = '#home';
 }
 
 function handle2FAInput(event){

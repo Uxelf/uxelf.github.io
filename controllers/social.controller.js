@@ -138,7 +138,7 @@ function sendRequest(target){
 	const alias = target.getAttribute("alias");
 	if (alias == null)
 		return;
-	sendFriendRequest(alias);
+	//sendFriendRequest(alias);
 	showNotification('Friend request sent to ' + alias);
 }
 
@@ -179,7 +179,7 @@ function acceptFriend(target){
 	const index = target.getAttribute("index");
 
 	
-	acceptFriendRequest(alias);
+	//acceptFriendRequest(alias);
 	removeFriendRequest(index);
 	showNotification("Friend request accepted");
 }
@@ -189,7 +189,7 @@ function declineFriend(target){
 	const alias = target.getAttribute("alias");
 	const index = target.getAttribute("index");
 
-	declineFriendRequest(alias);
+	//declineFriendRequest(alias);
 	removeFriendRequest(index);
 	showNotification("Friend request rejected");
 }
@@ -208,7 +208,7 @@ function removeFriend(target){
 	const friendDiv = document.getElementById("friendNumber" + index);
 	friendDiv.remove();
 
-	removeFriendWithAlias(alias);
+	//removeFriendWithAlias(alias);
 	showNotification(alias + " is no longer your friend");
 }
 

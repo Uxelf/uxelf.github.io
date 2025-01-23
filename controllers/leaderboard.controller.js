@@ -2,6 +2,7 @@ import Menu from './menu.controller.js'
 import getPodiumUsers from '../js/apisCallers/userInfo/getPodiumUsers.js'
 import getMyUserInfo from '../js/apisCallers/userInfo/getMyUserInfo.js'
 import { cacheBypass } from '../js/settings.js';
+import showNotification from '../js/showNotification.js';
 
 export default async() => {
 	
@@ -18,6 +19,9 @@ export default async() => {
 	let homeText = await response.text();
 	homeText = loadLeaderBoard(homeText);
 	content.innerHTML = (await homeText);
+	setTimeout(() => {
+		showNotification("This is a demo, profile information is hardcoded");
+	}, 200);
 };
 
 async function loadLeaderBoard(text){

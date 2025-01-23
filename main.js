@@ -30,12 +30,11 @@ function handlePopstate(){
 	leaveQueue();
 }
 
+
+var isLogged = false;
 async function isUserLogged(){
 
-	// router();
-	// return;
-
-	const jwtToken = localStorage.getItem('jwtToken');
+	/* const jwtToken = localStorage.getItem('jwtToken');
 	if (jwtToken){
 		const result = (await getMyUserInfo());
 		const isJwtValid = !((await result) == null);
@@ -50,6 +49,14 @@ async function isUserLogged(){
 			localStorage.removeItem('jwtToken');
 			navigateTo("#login");
 		}
+	}
+	else{
+		navigateTo("#login");
+	} */
+
+	const jwtToken = localStorage.getItem('jwtToken')
+	if (jwtToken){
+		router();
 	}
 	else{
 		navigateTo("#login");

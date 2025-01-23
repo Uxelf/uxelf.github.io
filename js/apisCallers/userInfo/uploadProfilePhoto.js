@@ -1,7 +1,7 @@
 
 export default async(file) => {
 
-    const formData = new FormData();
+    /* const formData = new FormData();
     formData.append('file', file);
 
 
@@ -15,5 +15,6 @@ export default async(file) => {
     
     if (!(await response).ok)
         console.error('API response not ok: ' + (await response).statusText.message);
-    return (await response).status;
+    return (await response).status; */
+    return 0;
 }

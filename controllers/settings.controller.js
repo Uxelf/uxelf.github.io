@@ -18,5 +18,5 @@ export default async function()  {
     content.innerHTML = await response.text();
 
     setSettingsListeners();
-    await checkTwoFactorAuthStatus(); // Check and set two-factor auth status
+    //await checkTwoFactorAuthStatus(); // Check and set two-factor auth status
 };

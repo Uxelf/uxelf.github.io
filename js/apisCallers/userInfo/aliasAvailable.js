@@ -1,6 +1,6 @@
 export default async(alias) => {
 
-    try{
+    /* try{
         
         let url = '/user_info/alias_available?alias=' + alias;
 
@@ -20,7 +20,7 @@ export default async(alias) => {
     catch (error){
         console.error('Error:', error.message);
         return error.message;
-    }
+    } */
 
-    
+    return "ok";
 }

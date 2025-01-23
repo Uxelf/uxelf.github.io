@@ -3,26 +3,31 @@ import * as gameSocket from '../js/gameSocket.js';
 import { startMMTimer, stopMMTimer } from '../js/counter.js';
 import { changeGameMode } from '../game/game.js';
 import { getRandomMessage } from './getRandomMessage.js';
+import showNotification from './showNotification.js';
+import loadGameView from '../controllers/game.controller.js';
 
 let inTournamentQueue = false;
 let inQueue = false;
 let playersInTournamentQueue = 0;
 
 export function loadLocalMode(){
-	gameSocket.localMode();
+	//gameSocket.localMode();
 	changeGameMode("offline");
+	loadGameView();
 }
 
 export function loadOnlineMode(){
-    gameSocket.onlineMode();
-	changeGameMode("online");
-	inQueue = true;
+    //gameSocket.onlineMode();
+	//changeGameMode("online");
+	//inQueue = true;
+	showNotification("Servers down");
 }
 
 export function loadTournamentMode(){
-	gameSocket.tournamentMode();
-	inTournamentQueue = true;
-	changeGameMode("online");
+	//gameSocket.tournamentMode();
+	//inTournamentQueue = true;
+	//changeGameMode("online");
+	showNotification("Servers down");
 }
 
 export async function changeToMatchMakingScreen(mode){
