@@ -268,19 +268,10 @@ a:link {
 
 
 
-@media (max-height: 800px){
-	.tc-menubar {
-		transform: translateX(-110px);
-		width: 0px;
-    }
-    
+@media (max-height: 800px){    
     .main-content {
         margin-left: 0;
     }
-
-	#app{
-		max-width: 100%;
-	}
 
 	.tc-play-end-display{
 		max-width: 100%;
