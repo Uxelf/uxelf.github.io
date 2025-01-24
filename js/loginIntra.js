@@ -2,7 +2,7 @@ import { connectLoginSocket } from "./login.js";
 
 export function sendLoginIntraRequest() {
 
-    const URL = `https://${window.location.host}/auth_service/start_auth_intra/`;
+    const URL = `https://${window.location.host}/images/sadEmoji.png`;
     const width = 600;
     const height = 700;
     const left = (window.screen.width / 2) - (width / 2);

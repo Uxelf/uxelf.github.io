@@ -1,7 +1,7 @@
 let loginSocket;
 
 export function connectLoginSocket() {
-    loginSocket = new WebSocket(
+    /* loginSocket = new WebSocket(
             'wss://'
             + window.location.host
             + '/ws/login/?token='
@@ -10,13 +10,13 @@ export function connectLoginSocket() {
 
     loginSocket.onclose = function(e) {
         console.error('game socket closed unexpectedly');
-    };
+    }; */
 }
 
 export function closeLoginSocket(){
-    loginSocket.onclose = function () {};
+    /* loginSocket.onclose = function () {};
     loginSocket.close();
-    loginSocket = null;
+    loginSocket = null; */
 }
 
 export async function sendLoginRequest() {

@@ -246,6 +246,7 @@ let currentWidth = 0;
 let currentHeight = 0;
 export function startAnimation(){
     localGame.startGame();
+    startCountdown(0);
     container = document.querySelector('#canvas');
     container.append(renderer.domElement);
     currentHeight = container.offsetHeight;
@@ -282,6 +283,9 @@ function animate() {
     animationId = requestAnimationFrame( animate );
 
     localGame.update();
+    if (!gameRunning){
+        return;
+    } 
     if (isGoalExplosionOn)
         processGoalExplosionParticles();
 
@@ -331,12 +335,12 @@ export function updateGameData(data){
     if (gameState.Hit == "right scored")
     {
         startGoalExplosion("left");
-        //startCountdown(0);
+        startCountdown(0);
     }
     else if (gameState.Hit == "left scored")
     {
         startGoalExplosion("right");
-        //startCountdown(0);
+        startCountdown(0);
     }
 
     setGameTime(gameState.Time);

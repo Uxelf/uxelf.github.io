@@ -13,11 +13,11 @@ import showNotification from './showNotification.js';
 export let gameSocket = null;
 
 export function send(params){
-	gameSocket.send(params);
+	/* gameSocket.send(params); */
 }
 
 export function createGameSocket(){
-	gameSocket = new WebSocket(
+	/* gameSocket = new WebSocket(
 		'wss://'
 		+ window.location.host
 		+ '/ws/game/?token='
@@ -27,35 +27,35 @@ export function createGameSocket(){
 	gameSocket.onclose = function(e) {
 		console.error('Game socket closed unexpectedly');
 	};
-	idle();
+	idle(); */
 }
 
 export function closeGameSocket(){
-	gameSocket.send(JSON.stringify({
+	/* gameSocket.send(JSON.stringify({
 		"type": "log_out"}));
 	gameSocket.onclose = function () {};
 	gameSocket.onmessage = function () {};
 	gameSocket.close();
-	gameSocket = null;
+	gameSocket = null; */
 }
 
 export function updateAlias(alias){
-	gameSocket.send(JSON.stringify({
+	/* gameSocket.send(JSON.stringify({
 		"type": "update_alias",
 		"alias": alias
-	}))
+	})) */
 }
 
 export function idle(){
-	leaveGame();
+	/* leaveGame();
 	if (gameSocket)
 		gameSocket.onmessage = function () {};
 	inTournament = false;
-	inGame = false;
+	inGame = false; */
 }
 
 export function localMode(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	gameSocket.send(JSON.stringify({
 		"type": "join",
@@ -70,11 +70,11 @@ export function localMode(){
 					loadGameView();
 			}
 		}
-	}
+	} */
 }
 
 export async function onlineMode(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	
 	const userData = await getMyUserInfo();
@@ -101,12 +101,12 @@ export async function onlineMode(){
 				resetQueueState();
 			}
 		}
-	};
+	}; */
 }
 
 export let inTournament = false;
 export function tournamentMode(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	gameSocket.send(JSON.stringify({
 		"type": "join",
@@ -136,11 +136,11 @@ export function tournamentMode(){
 			}
 			readTournamentMessage(data);
 		}
-	};
+	}; */
 }
 
 function checkJoinStatus(status, code){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	if (status == "success")
 		return true;
@@ -148,11 +148,11 @@ function checkJoinStatus(status, code){
 		showNotification(code);
 		gameSocket.onmessage = null;
 		return false;
-	}
+	} */
 }
 
 export function tournamentBracketsMode(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	gameSocket.onmessage = function(e) {
 		let data = JSON.parse(e.data);
@@ -166,23 +166,23 @@ export function tournamentBracketsMode(){
 			}
 			readTournamentMessage(data);
 		}
-	}
+	} */
 }
 
 export function leaveQueue(queueType){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	gameSocket.send(JSON.stringify({
 		"type": "leave",
 		"context": queueType
 	}));
-	gameSocket.onmessage = null;
+	gameSocket.onmessage = null; */
 }
 
 let inGame = false;
 let endedMatch = false;
 export function listenGameUpdates(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	inGame = true;
 	endedMatch = false;
@@ -219,11 +219,11 @@ export function listenGameUpdates(){
 			else 
 				readTournamentMessage(data);
         }
-    }
+    } */
 }
 
 export function leaveGame(){
-	if (!gameSocket)
+	/* if (!gameSocket)
 		return;
 	if (!inGame && !inTournament){
 		return;
@@ -243,11 +243,11 @@ export function leaveGame(){
 	inGame = false;
 	inTournament = false;
 
-	idle();
+	idle(); */
 }
 
 function readTournamentMessage(data){
-	if (data["type"] == "tournament_match_ended"){
+	/* if (data["type"] == "tournament_match_ended"){
 		tournamentManager.addFinalistPlayer(data.winner, data.match_id);
-	}
+	} */
 }
