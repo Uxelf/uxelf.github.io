@@ -1227,19 +1227,10 @@ a:link {
 }
 
 @media (max-width: 1200px){
-	.tc-menubar {
-		/* animation: animationmenu 0.5s forwards; */
-		transform: translateX(-110px);
-		width: 0px;
-    }
     
     .main-content {
         margin-left: 0;
     }
-
-	#app{
-		max-width: 100%;
-	}
 
 	.tc-play-end-display{
 		max-width: 100%;
