@@ -25,8 +25,8 @@ let ballCurrentVelocity;
 let ballDirection = new THREE.Vector2(1, 0);
 
 let hit = "";
-let gameDuration = 3;
-let timeLeft = 120;
+let gameDuration = 60;
+let timeLeft = 60;
 
 let leftScore = 0;
 let rightScore = 0;
